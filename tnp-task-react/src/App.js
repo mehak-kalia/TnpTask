@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { useState, useEffect } from "react";
+import axios from "axios";
 function App() {
+  const [posts, setPosts] = useState([])
+  useEffect(()=>{
+    async function getAllPosts(){
+      try {
+        const posts = await axios.get("http://127.0.0.1:8000/api/post/")
+        console.log(posts.data)
+        setPosts(posts.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getAllPosts()
+  }, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Connect React JS with Laravel</h1>
+     {
+       posts.map((post, i)=>{
+         return (
+           <><h2 key={i}>{post.posthead}</h2><h3 key={i}>{post.postsubhead}</h3></>
+         )
+       })
+     }
     </div>
   );
 }
