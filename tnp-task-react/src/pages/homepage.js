@@ -1,28 +1,9 @@
-import './App.css';
-
+import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Posts from './pages/postpage';
-import Home from './pages/homepage';
-import Navbar from './components/Navbar/navbarIndex';
-import { BrowserRouter as Router, Routes, Route}
-    from 'react-router-dom';
-function App() {
-//   return (
-//     // <Router>
-//     // <Navbar />
-//     // {/* <Routes>
-//     //     <Route exact path='/' element={<Home />} />
-//     //     <Route path='/post' element={<Posts/>} />
-//     // </Routes> */}
-//     // </Router>
 
-//     <Navbar>
-
-//     </Navbar>
-// );
-
-const [posts, setPosts] = useState([])
+const Home = () => {
+    const [posts, setPosts] = useState([])
     useEffect(()=>{
       async function getAllPosts(){
         try {
@@ -49,6 +30,6 @@ const [posts, setPosts] = useState([])
        }
       </div>
     );
-}
+};
 
-export default App;
+export default Home;
